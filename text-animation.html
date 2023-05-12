@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+    }
+
+    .section::-webkit-scrollbar {
+      width: 12px;
+    }
+
+    .section::-webkit-scrollbar-track {
+      background-color: darkgrey;
+    }
+
+    .section::-webkit-scrollbar-thumb {
+      box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    }
+
+    body {
+      background: #000c17;
+    }
+
+    div {
+      box-sizing: border-box;
+    }
+
+    .box {
+      background-color: rgba(0, 12, 23, .867);
+      border: 3px solid rgba(53, 162, 253, .267);
+      border-radius: 10px;
+      display: flex;
+      margin: 4px 2px;
+      overflow: hidden;
+    }
+
+    .box_content {
+      --poly-from: polygon(50% 0%, 60% 40%, 100% 50%, 60% 60%, 50% 100%, 40% 60%, 0% 50%, 40% 40%);
+      --poly-to: polygon(50% 30%, 100% 0%, 70% 50%, 100% 100%, 50% 70%, 0% 100%, 30% 50%, 0% 0%);
+      background-image: linear-gradient(90deg, #04182c, #000c17, #04182c);
+      font-size: 16px;
+      height: 400px;
+      overflow-y: scroll;
+      padding: 6px 10px;
+      width: 100%;
+    }
+
+    .box_content .box_text {
+      height: 50px;
+      overflow: hidden;
+    }
+
+    .box_content .box_animation_left {
+      float: left;
+    }
+
+    .box_content .box_animation_right {
+      float: right;
+    }
+
+    .box_content .animation_conditions {
+      -webkit-animation: animation_conditions 3s ease-in-out infinite alternate;
+      animation: animation_conditions 3s ease-in-out infinite alternate;
+      background-image: repeating-linear-gradient(blue, orange 50px);
+      -webkit-clip-path: var(var(--poly-from));
+      clip-path: var(var(--poly-from));
+      height: 300px;
+      width: 300px;
+    }
+
+    .box_content span {
+      word-break: break-all;
+      /* 允许在单词内换行。 */
+    }
+
+    .text {
+      color: #fff;
+    }
+
+    @keyframes animation_conditions {
+      0% {
+        -webkit-clip-path: var(--poly-from);
+        clip-path: var(--poly-from);
+        shape-outside: var(--poly-from);
+      }
+
+      100% {
+        -webkit-clip-path: var(--poly-to);
+        clip-path: var(--poly-to);
+        shape-outside: var(--poly-to);
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <div class="box">
+      <div class="box_content">
+        <div class="box_text"></div>
+        <div class="animation_conditions box_animation_left"></div>
+        <div class="animation_conditions box_animation_right"></div>
+        <span class="text">clip-path 属性可以创建一个只有元素的部分区域可以显示的剪切区域。区域内的部分显示，区域外的隐藏。剪切区域是被引用内嵌的URL定义的路径或者外部作为一个形状。clip-path
+          属性替代了现在已经弃用的剪切 clip 属性。clip-path
+          属性可以创建一个只有元素的部分区域可以显示的剪切区域。区域内的部分显示，区域外的隐藏。剪切区域是被引用内嵌的URL定义的路径或者外部作为一个形状。clip-path 属性替代了现在已经弃用的剪切 clip
+          属性。clip-path 属性可以创建一个只有元素的部分区域可以显示的剪切区域。区域内的部分显示，区域外的隐藏。剪切区域是被引用内嵌的URL定义的路径或者外部作为一个形状。clip-path 属性替代了现在已经弃用的剪切
+          clip 属性。clip-path 属性可以创建一个只有元素的部分区域可以显示的剪切区域。区域内的部分显示，区域外的隐藏。剪切区域是被引用内嵌的URL定义的路径或者外部作为一个形状。clip-path
+          属性替代了现在已经弃用的剪切 clip 属性。clip-path
+          属性可以创建一个只有元素的部分区域可以显示的剪切区域。区域内的部分显示，区域外的隐藏。剪切区域是被引用内嵌的URL定义的路径或者外部作为一个形状。clip-path 属性替代了现在已经弃用的剪切 clip
+          属性。clip-path 属性可以创建一个只有元素的部分区域可以显示的剪切区域。区域内的部分显示，区域外的隐藏。剪切区域是被引用内嵌的URL定义的路径或者外部作为一个形状。clip-path 属性替代了现在已经弃用的剪切
+          clip 属性。</span>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
+<script>
+  /**
+   * 1. css的 clip-path （剪切）
+   * 2. clip-path 属性可以创建一个只有元素的部分区域可以显示的剪切区域。区域内的部分显示，区域外的隐藏。剪切区域是被引用内嵌的URL定义的路径或者外部作为一个形状。clip-path 属性替代了现在已经弃用的剪切 clip 属性。
+   * 3. CSS 的 clip-path 属性是 clip 属性的升级版，它们的作用都是对元素进行 “剪裁”，不同的是 clip 只能作用于 position 为 absolute 和 fixed 的元素且剪裁区域只能是正方形，而 clip-path 更加强大，可以以任意形状去裁剪元素，且对元素的定位方式没有要求。基于这样的特性，clip-path 常用于实现一些炫酷的动画效果。
+   * 4. 
+  */
+</script>

@@ -1,0 +1,141 @@
+/* 
+  var(): 插入css变量的值，变量名称必须以2个短划线（--）开头，并且区分大小写 
+  局部变量: 声明的选择器内使用   
+            var(--a)  --a:red
+  全局变量: root里面定义的变量
+            var(--blue)
+            :root {
+              --blue: blue
+            }
+*/
+
+.box {
+  width: 500px;
+  height: 500px;
+}
+
+.img {
+  width: 100%;
+  height: 100%;
+}
+
+/* 
+  clip-path 有几大类，分别为
+  basic-shape: 基本图形，包括 inset()、circle()、ellipse()、polygon()
+  clip-source: 通过 url() 方法引用一段 SVG 的 <clipPath> 来作为剪裁路径
+  geometry-box: 单独使用时会将指定框的边缘作为剪裁路径，或者配合 basic-shape 使用，用于定义剪裁的参考框（Reference Box）（由于该属性浏览器支持度比较低，本文暂不讨论）
+*/
+
+/* --------------------------------- */
+/* 
+  inset 用于定义一个插进的矩形，即被裁剪元素内部的一块矩形区域
+  参数类型 inset( <shape-arg>{1,4} [round <border-radius>]? )
+  其中 shape-arg 分别为矩形的上右下左顶点（最外的边）到被剪裁元素边缘的距离（和margin、padding参数类似），border-radius 为可选参数，用于定义 border 的圆角。
+  inset表示方形裁剪，函数提供来五个参数，前四个参数分别代表插进的长方形与相关盒模型的上右下左四个边界的偏移量，第五个可选参数<border-radius>用于定义插进长方形顶点的圆弧角度    
+*/
+/* .inset {
+  --poly-from: inset(0);
+  --poly-to: inset(100px 200px 10% 20% round 20px);
+} */
+
+/* --------------------------------- */
+
+/*
+  circle() 用于定义一个圆。
+  参数类型：circle( [<shape-radius>]? [at <position>]? )
+  其中 shape-radius 为圆形的半径，position 为圆心的位置。
+  circle表示圆形裁剪，函数提供两个可选参数，第一个圆形的半径，第二个圆心的位置
+*/
+/* .circle {
+  --poly-from: circle(100px at center);
+  --poly-to: circle(50% at center);
+} */
+
+/* --------------------------------- */
+
+/*
+  ellipse() 用于定义一个椭圆。
+  参数类型：ellipse( [<shape-radius>{2}]? [at <position>]? )
+  其中 shape-radius 为椭圆x、y轴的半径，position 为椭圆中心的位置。
+  第一个参数x轴方向半径，第二个参数y轴方向半径，第三个参数圆心的位置
+*/
+/* .ellipse {
+  --poly-from: ellipse(500px 500px at 50%);
+  --poly-to: ellipse(250px 100px at 50%);
+} */
+
+/* --------------------------------- */
+
+/*
+  polygon() 用于定义一个多边形。
+  参数类型：polygon( [<fill-rule>,]? [<shape-arg> <shape-arg>]# )
+  其中 fill-rule 为填充规则，即通过一系列点去定义多边形的边界。
+  ','逗号分组 (50%是中心) ，【每多一组就会按照顺时针方向多一个角】  
+  第一组： 12点钟方向第一个角
+      参数1：x
+      参数2：y
+
+  第二组： 12点钟方向第二个角
+      参数1：x
+      参数2：y
+  
+  第三组： 12点钟方向第三个角
+      参数1：x
+      参数2：y
+
+  第四组： 12点钟方向第四个角
+      参数1：x
+      参数2：y
+  ...
+
+  
+  // **下边是测试的过程**
+  第一组： 左上
+      参数1：x和y交叉点
+      参数2：y左轴的位置
+
+  第二组： 右上
+      参数1：当前y左轴顶点的位置到x轴下边界点的位置
+      参数2：参数1的位置点到x下轴的位置
+  
+  第三组： 右下
+      参数1：当前y右轴顶点的位置到x下边界点的位置
+      参数2：参数1的位置点到y右轴的位置
+
+  第四组： 左下 
+      参数1：当前x右轴顶点的位置到y上边界点的位置
+      参数2：参数1的位置点到y右轴的位置 
+*/
+
+.polygon {
+  /* 五角星 */
+  /* --poly-from: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%); */
+
+  --poly-from: polygon(0% 50%, 50% 0%, 100% 50%, 50% 100%);
+  --poly-to: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+}
+
+/* --------------------------------- */
+
+/* 动画 */
+.animation_conditions {
+  -webkit-animation: animation_conditions 2s ease-in-out infinite alternate;
+  animation: animation_conditions 2s ease-in-out infinite alternate;
+  -webkit-clip-path: var(var(--poly-from));
+  clip-path: var(var(--poly-from));
+}
+
+/* 过度 */
+@keyframes animation_conditions {
+  0% {
+    -webkit-clip-path: var(--poly-from);
+    clip-path: var(--poly-from);
+    shape-outside: var(--poly-from);
+  }
+
+  100% {
+    -webkit-clip-path: var(--poly-to);
+    clip-path: var(--poly-to);
+    shape-outside: var(--poly-to);
+  }
+}
