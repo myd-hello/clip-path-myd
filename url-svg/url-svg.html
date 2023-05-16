@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="url-svg.css">
+  <title>裁剪</title>
+</head>
+
+<body>
+  <div class="box">
+    <!-- 
+      注意：在我们的启示文件中的 css 会将 svg 向下或者向右各偏移 100px, 以保证 svg 的左上角被置于背景网格中两条最粗的直线的交点处。
+
+      <svg>
+      包裹并定义整个矢量图，svg 标签之于矢量图就如同<html>标签之于一个web页面
+
+      <defs>
+      SVG 允许我们定义以后需要重复使用的图形元素。建议把所有需要再次使用的引用元素定义在defs元素里面。这样做可以增加 SVG 内容的易读性和无障碍。
+
+      <clipPath>
+      SVG 元素 <clipPath> 定义一条剪切路径，可作为其他元素的 clip-path 属性的值。
+
+      <circle> 
+      方法创建椭圆
+      cx 圆的中心的 x 坐标
+      cy 圆的中心的 y 坐标
+      r  圆的半径
+     -->
+
+    <div class="grid">
+      <svg>
+        <!-- <defs> -->
+        <!-- <clipPath id="svgCircle"> -->
+        <!-- 创建直线 line -->
+        <!-- 
+          x1---------x2
+          y1          |  
+          |           |
+          |           |
+          y2-----------
+            
+          x1  起点的水平轴坐标
+          y1  起点的竖直轴坐标
+          x2  终点的水平轴坐标
+          y2  终点的垂直轴坐标
+        -->
+        <!-- <line x1="3" y1="3" x2="48" y2="3"></line>
+        <line x1="3" y1="19" x2="65" y2="19"></line>
+        <line x1="3" y1="35" x2="48" y2="35"></line>
+        <line x1="3" y1="51" x2="65" y2="51"></line> -->
+
+
+        <!-- polyline元素只有一个属性：points。在这里你会使用一对对的数字来设置一系列的点。点和点之间的线段会自动绘制出来。数值对就简单地一个接一个的被写在点属性里。可以使用逗号分隔，但这不是必须的。为了便于阅读，你可能还想在代码中将每一对值写成一行。 -->
+        <!-- 创建折线 polyline -->
+        <!-- <polyline points="3 3 30 28 3 53"></polyline> -->
+
+        <!-- 
+          长方形和正方形可以通过 <rect> 元素来创建。<rect> 有4个需要提供值的属性：
+          x：左上角的 x 轴坐标值
+          y：左上角的 y 轴坐标值
+          width：矩形的宽度
+          height：矩形的高度
+         -->
+        <!-- 创建矩形 rect -->
+        <!-- <rect x="3" y="3" width="80" height="60"></rect>
+        <line x1="3" y1="19" x2="83" y2="19"></line>
+        <line x1="20" y1="3" x2="20" y2="17"></line> -->
+        
+        <!-- 
+          ellipse 元素也需要4个属性，然而这些属性和矩形的不同。我们使用的是水平和竖直半径而不是宽度和高度，同样地，我们通过中心而不是通过指定左上角来进行定位。
+
+          cx：中心位置在 x 轴上的坐标
+          cy：中心位置在 y 轴上的坐标
+          rx：沿 x 轴向的半径，也就是它会把图形分割成上下两部分
+          ry：沿 y 轴向的半径，也就是它会把图形分割成左右两部分
+         -->
+        <!-- 创建圆和椭圆 ellipse -->
+        <ellipse cx="43" cy="43" rx="40" ry="40"></ellipse>
+        <line x1="43" y1="15" x2="43" y2="50"></line>
+        <ellipse style="fill:black;" cx="43" cy="65" rx="3" ry="3"></ellipse>
+
+
+
+        <!-- 创建多边形 polygon -->
+
+        <!-- 通过指定点以及点和点之间的线来创建形状 path -->
+
+        <!-- g 将多种形状组合起来，将组合的形状置于 defs 中可以让他复用 -->
+
+        <!-- use 获取在 defs 中定义的复用对象并在 svg 中显示出来 -->
+
+        <!-- 圆 -->
+        <!-- <circle cx="250" cy="250" r="250" /> -->
+
+        <!-- 心 -->
+        <!-- <path d="M 10,30
+            A 20,20 0,0,1 50,30
+            A 20,20 0,0,1 90,30
+            Q 90,60 50,90
+            Q 10,60 10,30 z">
+            </path> -->
+
+        <!-- 文字 -->
+        <!-- <text x="0" y="300" textLength="400" lengthAdjust="spacing" font-family="Vollkorn" font-size="230px"
+              font-weight="700" font-style="italic"> log </text> -->
+        <!-- </clipPath> -->
+        <!-- </defs> -->
+      </svg>
+    </div>
+
+
+    <!-- <img class="img svg-circle" src="hourse.jpeg" /> -->
+  </div>
+</body>
+
+</html>
