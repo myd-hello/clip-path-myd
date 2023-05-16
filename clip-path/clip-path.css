@@ -20,6 +20,15 @@
 }
 
 /* 
+  clip 只对绝对定位的元素有效 对于position: fixed absolute
+  对于position:relative static无效
+*/
+/* .img {
+  position: absolute;
+  clip:rect(50px 350px 400px 100px);
+} */
+
+/* 
   clip-path 有几大类，分别为
   basic-shape: 基本图形，包括 inset()、circle()、ellipse()、polygon()
 */
@@ -32,8 +41,9 @@
   inset表示方形裁剪，函数提供来五个参数，前四个参数分别代表插进的长方形与相关盒模型的上右下左四个边界的偏移量，第五个可选参数<border-radius>用于定义插进长方形顶点的圆弧角度    
 */
 .inset {
-  --poly-from: inset(0);
-  --poly-to: inset(100px 200px 10% 20% round 20px);
+  /* --poly-from: inset(0); */
+  /* --poly-to: inset(100px 200px 10% 20% round 20px); */
+  /* --poly-to: inset(100px 200px 10% 20% round  50% 50% 0 0); */
 }
 
 /* --------------------------------- */
@@ -117,6 +127,13 @@
   /* 方块 */
   /* --poly-from: polygon(0% 50%, 50% 0%, 100% 50%, 50% 100%);
   --poly-to: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%); */
+
+  /* 帽子 */
+  /* --poly-from: polygon(39% 56%, 51% 13%, 59% 56%, 79% 29%, 93% 85%, 9% 86%, 23% 30%);
+  --poly-to: polygon(24% 0, 54% 0, 74% 0, 100% 0, 100% 100%, 0 100%, 0 0); */
+
+
+  clip-path: polygon(0% 0%, 0% 100%, 25% 100%, 25% 25%, 75% 25%, 75% 75%, 25% 75%, 25% 100%, 100% 100%, 100% 0%);
 }
 
 /* --------------------------------- */
@@ -133,12 +150,12 @@
   6. animation-direction  规定是否应该轮流反向播放的动画
      - alternate 动画轮流反向播放
 */
-.animation_conditions {
+/* .animation_conditions {
   -webkit-animation: animation_conditions 2s ease-in-out 2s infinite alternate;
   animation: animation_conditions 2s ease-in-out 2s infinite alternate;
   -webkit-clip-path: var(var(--poly-from));
   clip-path: var(var(--poly-from));
-}
+} */
 
 /* 过度 */
 @keyframes animation_conditions {
